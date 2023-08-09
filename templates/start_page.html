@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Strona startowa</title>
+</head>
+<body>
+    <h1>Witaj na stronie startowej!</h1>
+    {% if not visited %}
+		<p>Jesteś tu pierwszy raz.</p>
+        <p>Twój licznik: {{ counter }}</p>
+		<p>Twój Wizyta: {{ visited }}</p> 
+    {% else %}
+		<p>Jesteś tu kolejny raz.</p>
+        <p>Twój licznik: {{ counter }}</p>   
+		<p>Twój Wizyta: {{ visited }}</p> 
+    {% endif %}
+</body>
+</html>

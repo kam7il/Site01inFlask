@@ -1,6 +1,6 @@
 import os
 import threading
-from flask import Flask, send_from_directory, session
+from flask import Flask, send_from_directory, session, render_template
 from flask_session import Session
 import counterFile, backgroundTasks
 
@@ -16,8 +16,8 @@ app.config['PERMANENT_SESSION_LIFETIME'] = 1200
 # inicjalizacja mechanizmu sesji w oparciu o ustawienia obiektu app
 Session(app)
 # print obecnej konfiguracji Flask-Session
-for x, y in app.config.items():
-    print(x, "=", y)
+# for x, y in app.config.items():
+#     print(x, "=", y)
 # -----------------------------------------------------------------------------------
 # załadowanie stanu licznika z pliku do zmiennej
 counterFile.counterINT = counterFile.load_counter_file()
@@ -34,15 +34,14 @@ def favicon():
 @app.route("/")
 # strona startowa
 def start_page():
+    visited = session.get('visited', False)
     # sprawdzenie czy w słowniku jest klucz visited
     if 'visited' not in session:
         counterFile.counterINT += 1
         # ustawienie wartości klucza visited na True
         session['visited'] = True
-    return f"""
-    <p>Witaj na stronie pierwszy raz</p>
-    Licznik: {counterFile.counterINT}
-    """
+
+    return render_template('start_page.html', visited=visited, counter=counterFile.counterINT)
 
 
 # -----------------------------------------------------------------------------------
