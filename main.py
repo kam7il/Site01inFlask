@@ -34,9 +34,11 @@ def favicon():
 @app.route("/")
 # strona startowa
 def start_page():
+    # ustawienie zmiennej visited na True lub False, gdy nie ma klucza visited, domyślnie False
     visited = session.get('visited', False)
     # sprawdzenie czy w słowniku jest klucz visited
     if 'visited' not in session:
+        # zwiększenie licznka wejść na stronę, gdy osoba wchodzi pierwszy raz
         counterFile.counterINT += 1
         # ustawienie wartości klucza visited na True
         session['visited'] = True
