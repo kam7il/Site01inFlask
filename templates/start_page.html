@@ -4,15 +4,17 @@
     <title>Strona startowa</title>
 </head>
 <body>
-    <h1>Witaj na stronie startowej!</h1>
+    <h1>Witaj na stronie <b>kam7il'a</b></h1>
     {% if not visited %}
+        <p><b>Licznik wejść: </b> {{ counter }}</p>
 		<p>Jesteś tu dzisiaj pierwszy raz.</p>
-        <p>Twój licznik: {{ counter }}</p>
-<!--		<p>Twój Wizyta: {{ visited }}</p> -->
+<!--		<p>Status wizyty: {{ visited }}</p> -->
     {% else %}
-		<p>Jesteś tu dzisiaj kolejny raz.</p>
-        <p>Twój licznik: {{ counter }}</p>   
-<!--		<p>Twój Wizyta: {{ visited }}</p> -->
+        <p><b>Licznik wejść: </b> {{ counter }}</p>
+        <p>Jesteś tu dzisiaj kolejny raz.</p>
+<!--		<p>Status wizyty: {{ visited }}</p> -->
     {% endif %}
+<hr>
+<span>TREŚĆ</span>
 </body>
 </html>
