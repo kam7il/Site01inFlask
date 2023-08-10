@@ -1,8 +1,14 @@
 import os
 import threading
+
 from flask import Flask, send_from_directory, session, render_template
 from flask_session import Session
-import counterFile, backgroundTasks
+
+# importy moich modułów
+import backgroundTasks
+import counterFile
+import timeCalc
+
 
 # -----------------------------------------------------------------------------------
 # stworzenie instancji Flask
@@ -12,7 +18,7 @@ app = Flask(__name__)
 # sesja zapisana w systemie plików na serwerze
 app.config['SESSION_TYPE'] = 'filesystem'
 # czas po którym sesja wygaśnie
-app.config['PERMANENT_SESSION_LIFETIME'] = 1200
+# app.config['PERMANENT_SESSION_LIFETIME'] = 1200
 # inicjalizacja mechanizmu sesji w oparciu o ustawienia obiektu app
 Session(app)
 # print obecnej konfiguracji Flask-Session
@@ -21,18 +27,26 @@ Session(app)
 # -----------------------------------------------------------------------------------
 # załadowanie stanu licznika z pliku do zmiennej
 counterFile.counterINT = counterFile.load_counter_file()
+
+
 # -----------------------------------------------------------------------------------
 
+# co ma być zrobione przed requestem
+@app.before_request
+def before_request():
+    # ustawienie wygaśnięcia sesji na północ
+    app.permanent_session_lifetime = timeCalc.time_calc_to_midnight()
 
-@app.route('/favicon.ico')
+
 # dodanie favicon
+@app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'images/pacman_icon.png', mimetype='image/vnd.microsoft.icon')
 
 
-@app.route("/")
 # strona startowa
+@app.route("/")
 def start_page():
     # ustawienie zmiennej visited na True lub False, gdy nie ma klucza visited, domyślnie False
     visited = session.get('visited', False)
