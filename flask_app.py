@@ -1,5 +1,4 @@
 import os
-import threading
 
 from flask import Flask, send_from_directory, session, render_template
 from flask_session import Session
@@ -27,7 +26,8 @@ Session(app)
 # -----------------------------------------------------------------------------------
 # załadowanie stanu licznika z pliku do zmiennej
 counterFile.counterINT = counterFile.load_counter_file()
-
+# start taska w tle zapisującego stan licznka do pliku
+backgroundTasks.bg1_thread_start()
 
 # -----------------------------------------------------------------------------------
 
@@ -66,14 +66,6 @@ if __name__ == "__main__":
     # -------------------------------------------------------------------------------
     # dodanie favicon do aplikacji przy braku @app.route('/favicon.ico')
     # app.add_url_rule('/favicon.ico', 'favicon', favicon)
-    # -------------------------------------------------------------------------------
-    # -------------------------------------------------------------------------------
-    # utworzenie nowego wątku i uruchomienie funkcji save_counter_to_file() w tle
-    bg1_thread = threading.Thread(target=backgroundTasks.save_counter_to_file)
-
-    # Ustawienie wątku na tzw. "daemon", aby zakończył się razem z głównym wątkiem aplikacji
-    bg1_thread.daemon = True
-    bg1_thread.start()
     # -------------------------------------------------------------------------------
     # -------------------------------------------------------------------------------
     # uruchomienie app
