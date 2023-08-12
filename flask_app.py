@@ -1,5 +1,3 @@
-import os
-
 from flask import Flask, send_from_directory, session, render_template
 from flask_session import Session
 
@@ -36,13 +34,6 @@ backgroundTasks.bg1_thread_start()
 def before_request():
     # ustawienie wygaśnięcia sesji na północ
     app.permanent_session_lifetime = timeCalc.time_calc_to_midnight()
-
-
-# dodanie favicon
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(counterFile.THIS_FOLDER, 'static'),
-                               'images/pacman_icon.png', mimetype='image/vnd.microsoft.icon')
 
 
 # strona startowa
