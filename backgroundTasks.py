@@ -16,7 +16,7 @@ def save_counter_to_file(event_):
 
         # zawieszenie wykonania na określony czas
         event_.wait(interval_seconds)
-        print("test")
+        # print("test")
 
 
 # start taska w tle

@@ -8,7 +8,6 @@ import backgroundTasks
 import counterFile
 import timeCalc
 
-
 # -----------------------------------------------------------------------------------
 # stworzenie instancji Flask
 app = Flask(__name__)
@@ -29,6 +28,7 @@ counterFile.counterINT = counterFile.load_counter_file()
 # start taska w tle zapisującego stan licznka do pliku
 backgroundTasks.bg1_thread_start()
 
+
 # -----------------------------------------------------------------------------------
 
 # co ma być zrobione przed requestem
@@ -41,7 +41,7 @@ def before_request():
 # dodanie favicon
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
+    return send_from_directory(os.path.join(counterFile.THIS_FOLDER, 'static'),
                                'images/pacman_icon.png', mimetype='image/vnd.microsoft.icon')
 
 

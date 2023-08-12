@@ -1,9 +1,13 @@
 # moduł licznka wejść
+from pathlib import Path
+
+# path dla cross-platform scripts
+THIS_FOLDER = Path(__file__).parent.resolve()
+# ścieżka do pliku z stanem licznika
+counterFilePath = THIS_FOLDER / "saved_data/counter_file.txt"
+
 # stan początkowy licznika
 counterINT = 0
-# ścieżka do pliku z stanem licznika
-counterFilePath = "./saved_data/counter_file.txt"
-
 
 # wczytanie stanu licznika z pliku
 def load_counter_file():
