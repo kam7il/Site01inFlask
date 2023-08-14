@@ -23,11 +23,10 @@ Session(app)
 # -----------------------------------------------------------------------------------
 # załadowanie stanu licznika z pliku do zmiennej
 counterFile.counterINT = counterFile.load_counter_file()
-# start taska w tle zapisującego stan licznka do pliku
-backgroundTasks.bg1_thread_start()
-
-
+# start taska w tle do zapisu stanu licznika wejść
+backgroundTasks.bg1_thread.start()
 # -----------------------------------------------------------------------------------
+
 
 # co ma być zrobione przed requestem
 @app.before_request
@@ -60,5 +59,7 @@ if __name__ == "__main__":
     # -------------------------------------------------------------------------------
     # -------------------------------------------------------------------------------
     # uruchomienie app
-    app.run(debug=True)
+    # przy włączonym debug, wątki są uruchamiane podwójnie. Test z print("test") w save_counter_to_file()
+    # app.run(debug=True)
+    app.run()
     # -------------------------------------------------------------------------------
