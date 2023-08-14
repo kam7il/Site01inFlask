@@ -1,8 +1,8 @@
-from flask import Flask, send_from_directory, session, render_template
+from flask import Flask, session, render_template
 from flask_session import Session
 
 # importy moich modułów
-import backgroundTasks
+# import backgroundTasks
 import counterFile
 import timeCalc
 
@@ -24,7 +24,8 @@ Session(app)
 # załadowanie stanu licznika z pliku do zmiennej
 counterFile.counterINT = counterFile.load_counter_file()
 # start taska w tle do zapisu stanu licznika wejść
-backgroundTasks.bg1_thread.start()
+# nie działa na pythonanywhere
+# backgroundTasks.bg1_thread.start()
 # -----------------------------------------------------------------------------------
 
 
@@ -44,6 +45,8 @@ def start_page():
     if 'visited' not in session:
         # zwiększenie licznka wejść na stronę, gdy osoba wchodzi pierwszy raz
         counterFile.counterINT += 1
+        # wywołanie funkcji zapisującej do pliku stan licznika
+        counterFile.save_counter_file(counterFile.counterINT)
         # ustawienie wartości klucza visited na True
         session['visited'] = True
 

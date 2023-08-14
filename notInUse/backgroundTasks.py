@@ -1,3 +1,4 @@
+# obecnie nie korzystam z tego modułu ponieważ pythonanywhere nie obsługuje wątków
 # moduł w którym przechowywane są zadania wykonwane w tle
 import threading
 import counterFile
