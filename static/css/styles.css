@@ -16,6 +16,7 @@
     --text-color: white;
 }
 
+
 body {
     font-family: Arial, sans-serif;
     /* align-items: center; */
@@ -27,12 +28,22 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-.containerSwitch {
-    text-align: center;
-	/* vertical-align: top; */
-	position: absolute;
-	right: 20px;
-	top: 5px;
+@media (min-width: 500px) {
+	.containerSwitch {
+		text-align: right;
+		position: absolute;
+		right: 20px;
+		top: 5px;
+	}
+}
+
+@media (max-width: 501px) {
+	.containerSwitch {
+		text-align: right;
+		position: relative;
+		right: 12px;
+		top: 5px;
+	}
 }
 
 .switch {
@@ -83,5 +94,5 @@ input:checked + .slider:before {
 }
 
 p.switchText {
-	font-size: 20px;
+	font-size: 10px;
 }
