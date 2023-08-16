@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Standard Favicon -->
     <link rel="icon" type="image/x-icon" href="./static/images/pacman_icon.png" />
     <link rel="stylesheet" href="./static/css/styles.css">
     <title>Strona startowa</title>
 </head>
 <body>
+    <div class="containerSwitch">
+        <p class="switchText">Motyw strony<p>
+        <label class="switch">
+            <input type="checkbox" id="themeSwitch">
+            <span class="slider round"></span>
+        </label>
+    </div>
     <h1>Witaj na stronie <b>kam7il'a</b></h1>
     {% if not visited %}
         <p><b>Licznik wejść: </b> {{ counter }}</p>
@@ -17,7 +26,8 @@
         <p>Jesteś tu dzisiaj kolejny raz.</p>
 <!--		<p>Status wizyty: {{ visited }}</p> -->
     {% endif %}
-<hr>
-<span>TREŚĆ</span>
+    <hr>
+    <span>TREŚĆ</span>
+    <script src="./static/javascript/script.js"></script>
 </body>
 </html>
