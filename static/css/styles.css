@@ -8,17 +8,42 @@
 [data-theme="light"] {
     --background-color: white;
     --text-color: black;
+	
+	/*kolorowanie linków */
+	--color-a-link: blue;
+	--background-color-a-link: transparent;
+	--text-decoration-a-link: none;
+	
+	--color-a-visited: gray;
+	--background-color-a-visited: transparent;
+	--text-decoration-a-visited: none;
+	
+	--color-a-hover: red;
+	--background-color-a-hover: transparent;
+	--text-decoration-a-hover: underline;
 }
 
 /* Style dla ciemnego motywu */
 [data-theme="dark"] {
     --background-color: #232324;
     --text-color: white;
+	
+	/*kolorowanie linków */
+	--color-a-link: green;
+	--background-color-a-link: transparent;
+	--text-decoration-a-link: none;
+	
+	--color-a-visited: pink;
+	--background-color-a-visited: transparent;
+	--text-decoration-a-visited: none;
+	
+	--color-a-hover: red;
+	--background-color-a-hover: transparent;
+	--text-decoration-a-hover: underline;
 }
 
-
 body {
-    font-family: Arial, sans-serif;
+    font-family: Consolas, Arial, sans-serif;
     /* align-items: center; */
     /* justify-content: center; */
     /* min-height: 100vh; */
@@ -114,4 +139,28 @@ input:checked + .slider:before {
 
 .round {
     border-radius: 34px;
+}
+
+a:link {
+  color: var(--color-a-link);
+  background-color: var(--background-color-a-link);
+  text-decoration: var(--text-decoration-a-link);
+}
+
+a:visited {
+  color: var(--color-a-visited);
+  background-color: var(--background-color-a-visited);
+  text-decoration: var(--text-decoration-a-visited);
+}
+
+a:hover {
+  color: var(--color-a-hover);
+  background-color: var(--background-color-a-hover);
+  text-decoration: var(--text-decoration-a-hover);
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
 }

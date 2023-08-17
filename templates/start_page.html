@@ -18,17 +18,20 @@
         </label>
     </div>
     <h1>Witaj na stronie <b>kam7il'a</b></h1>
+        <p><b><u>Licznik wejść na stronę:</u></b> {{ counter }}</p>
     {% if not visited %}
-        <p><b>Licznik wejść: </b> {{ counter }}</p>
 		<p>Jesteś tu dzisiaj pierwszy raz.</p>
 <!--		<p>Status wizyty: {{ visited }}</p> -->
     {% else %}
-        <p><b>Licznik wejść: </b> {{ counter }}</p>
         <p>Jesteś tu dzisiaj kolejny raz.</p>
 <!--		<p>Status wizyty: {{ visited }}</p> -->
     {% endif %}
     <hr>
-    <span>TREŚĆ</span>
+    <h2>Linki</h2>
+    <p><a href="https://pl.linkedin.com/" target="_blank">Profil LinkedIn</a></p>
+    <p><a href="https://github.com" target="_blank">Profil GitHub</a></p>
+    <p><a href="https://www.cloudskillsboost.google" target="_blank">Profil Google Cloud Skills Boost</a></p>
+    <p><a href="https://strefakursow.pl/" target="_blank">Profil Strefa Kursów</a></p>
     <script src="./static/javascript/script.js"></script>
 </body>
 </html>

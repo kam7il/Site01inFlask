@@ -13,6 +13,11 @@ app = Flask(__name__)
 # konfiguracja sesji
 # sesja zapisana w systemie plików na serwerze
 app.config['SESSION_TYPE'] = 'filesystem'
+# Upewnij się, że ciasteczka są bezpieczne (HTTPS) | do opcji samesite
+app.config['SESSION_COOKIE_SECURE'] = True
+# Ustaw atrybut SameSite
+# https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie/SameSite
+app.config['SESSION_COOKIE_SAMESITE'] = 'Strict'
 # czas po którym sesja wygaśnie
 # app.config['PERMANENT_SESSION_LIFETIME'] = 1200
 # inicjalizacja mechanizmu sesji w oparciu o ustawienia obiektu app
