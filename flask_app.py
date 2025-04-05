@@ -4,6 +4,7 @@ from flask_session import Session
 # importy moich modułów
 # import backgroundTasks
 import counterFile
+from timeCalc import time_calc_to_midnight
 from datetime import timedelta
 
 # -----------------------------------------------------------------------------------
@@ -18,7 +19,7 @@ app.config['SESSION_COOKIE_SECURE'] = True
 # Ustaw atrybut SameSite
 # https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie/SameSite
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)
+# app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)
 # czas po którym sesja wygaśnie
 # app.config['PERMANENT_SESSION_LIFETIME'] = 1200
 # inicjalizacja mechanizmu sesji w oparciu o ustawienia obiektu app
@@ -35,11 +36,13 @@ counterFile.counterINT = counterFile.load_counter_file()
 # -----------------------------------------------------------------------------------
 
 
-# # co ma być zrobione przed requestem
-# @app.before_request
-# def before_request():
-#     # ustawienie wygaśnięcia sesji na północ
-#     app.permanent_session_lifetime = timeCalc.time_calc_to_midnight()
+# co ma być zrobione przed requestem
+@app.before_request
+def before_request():
+    # ustawienie wygaśnięcia sesji na północ
+    seconds_to_midnight = time_calc_to_midnight()
+    session.permanent = True
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(seconds=seconds_to_midnight)
 
 
 # strona startowa
