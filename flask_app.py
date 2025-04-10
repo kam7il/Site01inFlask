@@ -52,6 +52,7 @@ def before_request():
 def start_page():
     # setting the visited variable to True or False when there is no visited key, defaults to False
     visited = session.get('visited', False)
+    personal_counter = session.get('personal_counter', 0)
     # check if the dictionary contains the key visited
     if 'visited' not in session:
         # increasing the number of visits to the page when a person enters for the first time
@@ -60,8 +61,20 @@ def start_page():
         counterFile.save_counter_file(counterFile.counterINT)
         # setting the visited key value to True
         session['visited'] = True
+        # counter for session
+        personal_counter += 1
+        session['personal_counter'] = personal_counter
+        personal_counter = session.get('personal_counter')
+    else:
+        personal_counter += 1
+        session['personal_counter'] = personal_counter
 
-    return render_template('start_page.html', visited=visited, counter=counterFile.counterINT)
+    return render_template(
+        'start_page.html',
+        visited=visited,
+        counter=counterFile.counterINT,
+        personal_counter=personal_counter
+    )
 
 
 # -----------------------------------------------------------------------------------
