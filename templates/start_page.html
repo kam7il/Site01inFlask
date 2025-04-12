@@ -20,24 +20,22 @@
     <h1>Witaj na stronie <b>kam7il'a</b></h1>
         <p><b><u>Licznik wejść na stronę:</u></b> {{ counter }}</p>
         {% if personal_counter < 3 %}
-        <p><b>Twoje wejścia na stronę dzisiaj:</b> {{ personal_counter }}</p>
+            {% if not visited %}
+            <p>Jesteś tu dzisiaj pierwszy raz.</p>
+            {% else %}
+            <p>Jesteś tu dzisiaj kolejny raz.</p>
+            {% endif %}
         {% elif 3 <= personal_counter < 6 %}
-        <p><b>Nieźle, to już Twoje wejście numer:</b> {{ personal_counter }}</p>
+        <p><b>Nieźle, dzisiaj to już Twoje wejście numer:</b> {{ personal_counter }}</p>
         {% elif 6 <= personal_counter < 10 %}
-        <p><b>Sprawdzasz jaki będzie następny komunikat?. Wejście numer:</b> {{ personal_counter }}</p>
-        {% elif 10 <= personal_counter < 30 %}
-        <p><b>Zagrajmy w grę. Wejście numer:</b> {{ personal_counter }}</p>
+        <p><b>Sprawdzasz jaki będzie następny komunikat?. Dzisiejsze Twoje wejście numer:</b> {{ personal_counter }}</p>
+        {% elif 10 <= personal_counter < 20 %}
+        <p><b>Zagrajmy w grę. Dzisiejsze Twoje wejście numer:</b> {{ personal_counter }}</p>
         {% else %}
-        <p><b>Koniec! Innych komunikatów już nie będzie! Stan licznika:</b> {{ personal_counter }}</p>
+        <p><b>Koniec! Innych komunikatów już nie będzie! Stan licznika na dzisiaj:</b> {{ personal_counter }}</p>
         {% endif %}
 
-        {% if not visited %}
-		<p>Jesteś tu dzisiaj pierwszy raz.</p>
-<!--		<p>Status wizyty: {{ visited }}</p> -->
-        {% else %}
-        <p>Jesteś tu dzisiaj kolejny raz.</p>
-<!--		<p>Status wizyty: {{ visited }}</p> -->
-        {% endif %}
+
     <hr>
     <h2>Linki</h2>
     <p><a href="https://pl.linkedin.com/" target="_blank">Profil LinkedIn</a></p>
