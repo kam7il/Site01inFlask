@@ -1,28 +1,27 @@
-# obecnie nie korzystam z tego modułu ponieważ pythonanywhere nie obsługuje wątków
-# moduł w którym przechowywane są zadania wykonwane w tle
+# I currently do not use this module because pythonanywhere does not support threads
+# a module where tasks performed in the background are stored
 import threading
 import counterFile
 
-# Tworzenie obiektu Event
 event = threading.Event()
-# interwał czasowy, w jakim ma być wykonywane zadanie
+# time interval in which the task is to be performed
 interval_seconds = 5
 
 
-# funkcja wywołująca funkcję zapisu do pliku stanu licznika
-def save_counter_to_file():
+# function calling the function for writing the counter status to a file
+def save_counter_to_file() -> None:
     while True:
         counterFile.save_counter_file(counterFile.counterINT)
-        # zawieszenie wykonania na określony czas
+        # suspension of execution for a specified period
         event.wait(interval_seconds)
         # print("test")
-        # nie potzebne w tym case
+        # not needed in this case
         # event.clear()
 
 
-# utworzenie nowego wątku i uruchomienie funkcji save_counter_to_file() w tle
+# creating a new thread and running the save_counter_to_file() function in the background
 bg1_thread = threading.Thread(target=save_counter_to_file)
-# Ustawienie wątku na tzw. "daemon", aby zakończył się razem z głównym wątkiem aplikacji
+# Setting the thread to a so-called "daemon" so that it ends together with the main application thread
 bg1_thread.daemon = True
-# start taska w tle zrobiony w flask_app.py
+# background task start done in flask_app.py
 # bg1_thread.start()
